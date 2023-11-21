@@ -1,4 +1,4 @@
-## "dpIEL-Microbiome project, Batch correction"
+## "dpIEL-Microbiome project, Plotting human transcriptome data"
 ### "Puspendu Sardar, Ph.D, Department of medicine, University of Cambridge, UK"
 
 plot1 <- ggplot(NULL, aes(x=sample_info$HBI_3Low,
