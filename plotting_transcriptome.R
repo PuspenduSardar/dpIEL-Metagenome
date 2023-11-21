@@ -20,11 +20,12 @@ plot1 <- ggplot(NULL, aes(x=sample_info$HBI_3Low,
                colour= c('#b53d35', '#066e70'))
 
 
+#### Plot PCA-biplot
 library(factoextra)
 pca_dat <- t(log2(norm_counts[c("CD28","CD44","CD58","CD69","CD83","CD86","CD8A","CTSW","IFNG","IL2RB","ITGAE","TNF"),]+1))
 res.pca <- prcomp(pca_dat, scale = TRUE)
 
-pdf(file = "deseq_norm_curated_genes_pca_convex.pdf", width = 9, height = 6)
+pdf(file = "deseq_norm_curated_genes_pca.pdf", width = 9, height = 6)
 pca_plot <- fviz_pca_biplot(res.pca, col.ind = sample_info$HBI_3Low, geom = "point", addEllipses = TRUE, repel = TRUE,
                       ellipse.level=0.99, legend.title = "Disease score", ellipse.type = "confidence",
                      title='Principal Component Analysis of the curate genes') +
@@ -41,15 +42,18 @@ fviz_pca_ind(res.pca, label="none", habillage=propionate_ordi$HBI_3Low,
   theme_bw() +
   geom_point(aes(color=propionate_ordi$HBI_3Low), size=2)
 
+#### t-test on the axes
 scores <- data.frame(res.pca$x)
-
 scores$HBI_3Low <- sample_info$HBI_3Low
+##### Two-tail t-test
 t.test(PC2 ~ HBI_3Low, data = scores)
+##### One-tail t-test (alternative hypothesis)
 t.test(PC1 ~ HBI_3Low, data = core_acetate_coord, alternative = "l")
 
 boxplot(PC2 ~ HBI_3Low, data = scores, boxwex = 0.1, col = c("brown1", "cadetblue3"))
 
 
+#### 3-D plot of the selected genes
 library(canvasXpress)
 data=t(log2(norm_counts[c("CD8A","ITGAE","CTSW"),]+1))
 
