@@ -44,13 +44,13 @@ fviz_pca_ind(res.pca, label="none", habillage=propionate_ordi$HBI_3Low,
 
 #### t-test on the axes
 scores <- data.frame(res.pca$x)
-scores$HBI_3Low <- sample_info$HBI_3Low
+scores$HBI_3Low <- metadata_HBI$HBI_3Low
 ##### Two-tail t-test
-t.test(PC2 ~ HBI_3Low, data = scores)
+t.test(PC1 ~ HBI_3Low, data = scores)
 ##### One-tail t-test (alternative hypothesis)
-t.test(PC1 ~ HBI_3Low, data = core_acetate_coord, alternative = "l")
+t.test(PC1 ~ HBI_3Low, data = scores, alternative = "l")
 
-boxplot(PC2 ~ HBI_3Low, data = scores, boxwex = 0.1, col = c("brown1", "cadetblue3"))
+boxplot(PC1 ~ HBI_3Low, data = scores, boxwex = 0.1, col = c("brown1", "cadetblue3"))
 
 
 #### 3-D plot of the selected genes
