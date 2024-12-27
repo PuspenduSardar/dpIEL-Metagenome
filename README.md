@@ -1,5 +1,5 @@
 # dpIEL-Metagenome codes and data
-### Author: Puspendu Sardar, Ph.D., Deprtment of Medicine, University of Cambrodge
+### Author: Puspendu Sardar, Ph.D., Deprtment of Medicine, University of Cambridge
 
 ## Usage
 1. Download the "Batch_Correction.html" and "Batch_Correction.pdf" files to visualize the data structure and plots.
